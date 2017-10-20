@@ -17,7 +17,7 @@ exports.create = function(req, res) {
 };
 
 exports.list = function(req, res) {
-  Scotch.find().sort('-dramName').populate('creator', 'firstName lastName fullName').exec((err, scotches) => {
+  Scotch.find().sort({'distillerName': 1, 'flavor': 1, 'age': 1}).populate('creator', 'firstName lastName fullName').exec((err, scotches) => {
     if (err) {
       return res.status(400).send({
         message: getErrorMessage(err)
