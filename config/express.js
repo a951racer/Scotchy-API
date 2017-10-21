@@ -44,6 +44,7 @@ module.exports = function() {
   require('../app/notes/note.server.routes.js')(app);
   require('../app/tastings/tasting.server.routes.js')(app);
   require('../app/wishlists/wishlist.server.routes.js')(app);
+  require('../app/settings/style.server.routes.js')(app);
 
   app.use(express.static('./public'));
 
