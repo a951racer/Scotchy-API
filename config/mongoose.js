@@ -7,6 +7,7 @@ module.exports = function() {
   require('../app/scotches/scotch.server.model');
   require('../app/wishlists/wishlist.server.model');
   require('../app/lookup/style.server.model');
-  
+  require('../app/lookup/region.server.model');
+
   return db;
 };

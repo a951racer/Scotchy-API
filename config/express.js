@@ -45,6 +45,7 @@ module.exports = function() {
   require('../app/tastings/tasting.server.routes.js')(app);
   require('../app/wishlists/wishlist.server.routes.js')(app);
   require('../app/lookup/style.server.routes.js')(app);
+  require('../app/lookup/region.server.routes.js')(app);
 
   app.use(express.static('./public'));
 
