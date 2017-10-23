@@ -25,8 +25,14 @@ exports.updateTasting = function(req, res) {
       tastings[i].rating = updatedTasting.rating;
       tastings[i].comment = updatedTasting.comment;
       tastings[i].dateAdded = updatedTasting.dateAdded;
+      tastings[i].source = updatedTasting.source;
+      tastings[i].thirdParty = updatedTasting.thirdParty;
+      tastings[i].nose = updatedTasting.nose;
+      tastings[i].palate = updatedTasting.palate;
+      tastings[i].finish = updatedTasting.finish;
     }
   }
+    
   scotch.save((err) => {
     if (err) {
       return res.status(400).send({

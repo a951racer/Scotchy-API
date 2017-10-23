@@ -34,7 +34,7 @@ const ScotchSchema = new Schema({
     },
     comment: String,
     notes: [{ note: String, dateAdded: {type: Date, default: Date.now} }],
-    tastings: [{dateAdded: Date, location: String, rating: Number, comment: String}],
+    tastings: [{dateAdded: Date, location: String, rating: Number, source: String, thirdParty: Boolean, nose: String, palate: String, finish: String, comment: String}],
     wishLists: [String]
 });
 

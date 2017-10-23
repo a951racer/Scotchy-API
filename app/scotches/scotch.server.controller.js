@@ -34,7 +34,7 @@ exports.read = function(req, res) {
 
 exports.update = function(req, res) {
   const scotch = req.scotch;
-
+  
   scotch.distillerName = req.body.distillerName;
   scotch.flavor = req.body.flavor;
   scotch.age = req.body.age;
