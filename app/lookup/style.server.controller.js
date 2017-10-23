@@ -1,91 +1,84 @@
 const mongoose = require('mongoose');
-const Scotch = mongoose.model('Scotch');
+const Style = mongoose.model('Style');
 
 exports.create = function(req, res) {
-  const scotch = new Scotch(req.body);
-  scotch.creator = req.user;
+  const style = new Style(req.body);
 
-  scotch.save((err) => {
+  style.save((err) => {
     if (err) {
       return res.status(400).send({
         message: getErrorMessage(err)
       });
     } else {
-      res.status(200).json(scotch);
+      res.status(200).json(style);
     }
   });
 };
 
 exports.list = function(req, res) {
-  Scotch.find().sort({'distillerName': 1, 'flavor': 1, 'age': 1}).populate('creator', 'firstName lastName fullName').exec((err, scotches) => {
+  Style.find().sort({'name': 1}).exec((err, styles) => {
     if (err) {
       return res.status(400).send({
         message: getErrorMessage(err)
       });
     } else {
-      res.status(200).json(scotches);
+      res.status(200).json(styles);
     }
   });
 };
 
 exports.read = function(req, res) {
-  res.status(200).json(req.scotch);
+  res.status(200).json(req.style);
 };
 
 exports.update = function(req, res) {
-  const scotch = req.scotch;
+  const style = req.style;
 
-  scotch.distillerName = req.body.distillerName;
-  scotch.flavor = req.body.flavor;
-  scotch.age = req.body.age;
-  scotch.style = req.body.style;
-  scotch.region = req.body.region;
-  scotch.inStock = req.body.inStock;
-  scotch.comment = req.body.comment;
-  // scotch.added = req.body.added;
+  style.name = req.body.name;
   
-  scotch.save((err) => {
+  style.save((err) => {
     if (err) {
       return res.status(400).send({
         message: getErrorMessage(err)
       });
     } else {
-      res.status(200).json(scotch);
+      res.status(200).json(style);
     }
   });
 };
 
 
 exports.delete = function(req, res) {
-  const scotch = req.scotch;
+  const style = req.style;
 
-  scotch.remove((err) => {
+  style.remove((err) => {
     if (err) {
       return res.status(400).send({
         message: getErrorMessage(err)
       });
     } else {
-      res.status(200).json(scotch);
+      res.status(200).json(style);
     }
   });
 };
 
+/*
 exports.hasAuthorization = function(req, res, next) {
-  if (req.scotch.creator.id !== req.user.id) {
+  if (req.style.creator.id !== req.user.id) {
     return res.status(403).send({
       message: 'User is not authorized'
     });
   }
   next();
 };
+*/
 
-
-exports.scotchByID = function(req, res, next, id) {
-  Scotch.findById(id).populate('creator', 'firstName lastName fullName').exec((err, scotch) => {
+exports.styleByID = function(req, res, next, id) {
+  Style.findById(id).exec((err, style) => {
     if (err) return next(err);
-    if (!scotch) return next(new Error('Failed to load scotch ' + id));
+    if (!style) return next(new Error('Failed to load style ' + id));
 
-    req.scotch = scotch;
+    req.style = style;
     next();
   });
 };

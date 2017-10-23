@@ -34,7 +34,7 @@ exports.list = function(req, res) {
 exports.read = function(req, res) {
   let wishlist = new Object();
   wishlist.wishlist = req.wishlist;
-  Scotch.find({wishLists: req.wishlist.wishListName}).sort('-dramName').populate('creator', 'firstName lastName fullName').exec((err, scotches) => {
+  Scotch.find({wishLists: req.wishlist.wishListName}).sort({'distillerName': 1, 'flavor': 1, 'age': 1}).populate('creator', 'firstName lastName fullName').exec((err, scotches) => {
     if (err) {
       return res.status(400).send({
         message: getErrorMessage(err)

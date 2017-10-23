@@ -1,7 +1,7 @@
 {
   "name": "MEAN-Scotchy-API",
   "version": "0.0.1",
-  "repository": "https://github.com/a951racer/Scotchy-API.git"
+  "repository": "https://github.com/a951racer/Scotchy-API.git",
   "dependencies": {
     "body-parser": "1.15.2",
     "compression": "1.6.0",

@@ -1,91 +1,84 @@
 const mongoose = require('mongoose');
-const Scotch = mongoose.model('Scotch');
+const Region = mongoose.model('Region');
 
 exports.create = function(req, res) {
-  const scotch = new Scotch(req.body);
-  scotch.creator = req.user;
+  const region = new Region(req.body);
 
-  scotch.save((err) => {
+  region.save((err) => {
     if (err) {
       return res.status(400).send({
         message: getErrorMessage(err)
       });
     } else {
-      res.status(200).json(scotch);
+      res.status(200).json(region);
     }
   });
 };
 
 exports.list = function(req, res) {
-  Scotch.find().sort({'distillerName': 1, 'flavor': 1, 'age': 1}).populate('creator', 'firstName lastName fullName').exec((err, scotches) => {
+  Region.find().sort({'name': 1}).exec((err, regions) => {
     if (err) {
       return res.status(400).send({
         message: getErrorMessage(err)
       });
     } else {
-      res.status(200).json(scotches);
+      res.status(200).json(regions);
     }
   });
 };
 
 exports.read = function(req, res) {
-  res.status(200).json(req.scotch);
+  res.status(200).json(req.region);
 };
 
 exports.update = function(req, res) {
-  const scotch = req.scotch;
+  const region = req.region;
 
-  scotch.distillerName = req.body.distillerName;
-  scotch.flavor = req.body.flavor;
-  scotch.age = req.body.age;
-  scotch.style = req.body.style;
-  scotch.region = req.body.region;
-  scotch.inStock = req.body.inStock;
-  scotch.comment = req.body.comment;
-  // scotch.added = req.body.added;
+  region.name = req.body.name;
   
-  scotch.save((err) => {
+  region.save((err) => {
     if (err) {
       return res.status(400).send({
         message: getErrorMessage(err)
       });
     } else {
-      res.status(200).json(scotch);
+      res.status(200).json(region);
     }
   });
 };
 
 
 exports.delete = function(req, res) {
-  const scotch = req.scotch;
+  const region = req.region;
 
-  scotch.remove((err) => {
+  region.remove((err) => {
     if (err) {
       return res.status(400).send({
         message: getErrorMessage(err)
       });
     } else {
-      res.status(200).json(scotch);
+      res.status(200).json(region);
     }
   });
 };
 
+/*
 exports.hasAuthorization = function(req, res, next) {
-  if (req.scotch.creator.id !== req.user.id) {
+  if (req.region.creator.id !== req.user.id) {
     return res.status(403).send({
       message: 'User is not authorized'
     });
   }
   next();
 };
+*/
 
-
-exports.scotchByID = function(req, res, next, id) {
-  Scotch.findById(id).populate('creator', 'firstName lastName fullName').exec((err, scotch) => {
+exports.regionByID = function(req, res, next, id) {
+  Region.findById(id).exec((err, region) => {
     if (err) return next(err);
-    if (!scotch) return next(new Error('Failed to load scotch ' + id));
+    if (!region) return next(new Error('Failed to load region ' + id));
 
-    req.scotch = scotch;
+    req.region = region;
     next();
   });
 };
