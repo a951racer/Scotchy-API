@@ -42,6 +42,7 @@ exports.update = function(req, res) {
   scotch.region = req.body.region;
   scotch.inStock = req.body.inStock;
   scotch.comment = req.body.comment;
+  scotch.bottlingNotes = req.body.bottlingNotes;
   // scotch.added = req.body.added;
   
   scotch.save((err) => {
