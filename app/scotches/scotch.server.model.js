@@ -35,7 +35,7 @@ const ScotchSchema = new Schema({
   bottlingNotes: String,
   comment: String,
   notes: [{ note: String, dateAdded: {type: Date, default: Date.now} }],
-  tastings: [{dateAdded: Date, location: String, rating: Number, source: String, thirdParty: Boolean, nose: String, palate: String, finish: String, comment: String}],
+  tastings: [{dateAdded: Date, location: String, rating: Number, thirdParty: Boolean, nose: String, palate: String, finish: String, comment: String}],
   wishLists: [String]
 });
 
@@ -50,8 +50,10 @@ ScotchSchema.virtual('rating').get(function() {
   var sum = 0;
   var count = 0;
   this.tastings.forEach(function(tasting) {
-    sum += Number(tasting.rating);
-    count++;
+    if (!tasting.thirdParty) {
+      sum += Number(tasting.rating);
+      count++;
+    }
   });
   if (count > 0) {
     var ratingRaw = sum / count;
