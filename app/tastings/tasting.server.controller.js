@@ -25,7 +25,6 @@ exports.updateTasting = function(req, res) {
       tastings[i].rating = updatedTasting.rating;
       tastings[i].comment = updatedTasting.comment;
       tastings[i].dateAdded = updatedTasting.dateAdded;
-      tastings[i].source = updatedTasting.source;
       tastings[i].thirdParty = updatedTasting.thirdParty;
       tastings[i].nose = updatedTasting.nose;
       tastings[i].palate = updatedTasting.palate;
@@ -60,6 +59,31 @@ exports.deleteTasting = function(req, res) {
       });
     } else {
       res.status(200).json(scotch);
+    }
+  });
+}
+
+/*** Tasting Componenet stuff ********************/
+
+exports.list = function(req, res) {
+  response = new Array();
+  Scotch.find().exec((err, scotches) => {
+    if (err) {
+      return res.status(400).send({
+        message: getErrorMessage(err)
+      });
+    } else {
+      scotches.forEach(scotch => {
+        scotch.tastings.forEach(tasting => {
+          tasting.scotchId = scotch._id;
+          tasting.dramName = scotch.dramName;
+          response.push(tasting);
+          console.log(tasting.scotchId);
+          console.log(tasting.dramName);
+          console.log(tasting.location);
+        });
+      });
+      res.status(200).json(response);
     }
   });
 }

@@ -98,28 +98,6 @@ exports.addWishlistToScotch = function(req, res) {
   });
 };
 
-/* Pending removal ********************************************
-exports.updateScotchWishlist = function(req, res) {
-  var scotch = req.scotch;
-  var updatedWishlist = req.body;
-  var wishlists = scotch.wishLists;
-  for (var i = 0; i < wishlists.length; i++) {
-    if (wishlists[i]._id == updatedWishlist._id) {
-      wishlists[i].wishListName = updatedWishlist.wishListName;
-    }
-  }
-  scotch.save((err) => {
-    if (err) {
-      return res.status(400).send({
-        message: getErrorMessage(err)
-      });
-    } else {
-      res.status(200).json(scotch);
-    }
-  });
-}
-*/
-
 exports.deleteScotchWishlist = function(req, res) {
   var scotch = req.scotch;
   var updatedWishlist = req.body;
