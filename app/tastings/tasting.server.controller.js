@@ -67,6 +67,7 @@ exports.deleteTasting = function(req, res) {
 
 exports.list = function(req, res) {
   response = new Array();
+  var newTasting = new Object();
   Scotch.find().exec((err, scotches) => {
     if (err) {
       return res.status(400).send({
@@ -75,12 +76,18 @@ exports.list = function(req, res) {
     } else {
       scotches.forEach(scotch => {
         scotch.tastings.forEach(tasting => {
-          tasting.scotchId = scotch._id;
-          tasting.dramName = scotch.dramName;
-          response.push(tasting);
-          console.log(tasting.scotchId);
-          console.log(tasting.dramName);
-          console.log(tasting.location);
+          newTasting.dateAdded = tasting.dateAdded;
+          newTasting.location = tasting.location;
+          newTasting.thirdParty = tasting.thirdParty;
+          newTasting.rating = tasting.rating;
+          newTasting.nose = tasting.nose;
+          newTasting.palate = tasting.palate;
+          newTasting.finish = tasting.finish;
+          newTasting.comment = tasting.comment;
+          newTasting.scotchId = scotch._id;
+          newTasting.dramName = scotch.dramName;
+          response.push(newTasting);
+          newTasting = {};
         });
       });
       res.status(200).json(response);

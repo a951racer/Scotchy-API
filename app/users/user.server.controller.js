@@ -30,7 +30,6 @@ exports.signup = function(req, res) {
 };
 
 exports.signin = function(req, res, next) {
-  console.log('in signin');
   passport.authenticate('local', function(err, user, info) {
     if (err || !user) {
       res.status(400).send(info);
@@ -43,7 +42,6 @@ exports.signin = function(req, res, next) {
         if (err) {
           res.status(400).send(err);
         } else {
-          console.log('logged in: ' + user);
           res.json(user);
         }
       });
