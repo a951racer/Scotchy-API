@@ -9,7 +9,10 @@ module.exports = function(app) {
     // .delete(users.requiresLogin, scotches.hasAuthorization, tastings.deleteTasting)
     .post(tastings.addTasting)
     .put(tastings.updateTasting)  
-    .delete(tastings.deleteTasting)
+    .delete(tastings.deleteTasting);
   
+  app.route('/api/tastings')
+    .get(tastings.list);
+
   app.param('scotchId', scotches.scotchByID);
 };
