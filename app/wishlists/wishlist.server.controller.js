@@ -20,7 +20,7 @@ exports.create = function(req, res) {
 };
 
 exports.list = function(req, res) {
-  Wishlist.find().sort('-name').populate('creator', 'firstName lastName fullName').exec((err, wishlists) => {
+  Wishlist.find().sort({'wishListName': 1}).populate('creator', 'firstName lastName fullName').exec((err, wishlists) => {
     if (err) {
       return res.status(400).send({
         message: getErrorMessage(err)
