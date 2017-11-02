@@ -6,6 +6,7 @@ module.exports = function() {
   require('../app/users/user.server.model');
   require('../app/scotches/scotch.server.model');
   require('../app/wishlists/wishlist.server.model');
+  // require('../app/prices/price.server.model');
   require('../app/lookup/style.server.model');
   require('../app/lookup/region.server.model');
 
