@@ -23,6 +23,7 @@ exports.updatePrice = function(req, res) {
     if (prices[i]._id == updatedPrice._id) {
       prices[i].dateAdded = updatedPrice.dateAdded;
       prices[i].location = updatedPrice.location;
+      prices[i].size = updatedPrice.size;
       prices[i].price = updatedPrice.price;
       prices[i].tax = updatedPrice.tax;
       prices[i].shipping = updatedPrice.shipping;
@@ -78,6 +79,7 @@ exports.list = function(req, res) {
           newPrice._id = price._id;
           newPrice.dateAdded = price.dateAdded;
           newPrice.location = price.location;
+          newPrice.size = price.size;
           newPrice.price = price.price;
           newPrice.tax = price.tax;
           newPrice.shipping = price.shipping;

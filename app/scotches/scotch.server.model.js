@@ -37,7 +37,7 @@ const ScotchSchema = new Schema({
   notes: [{ note: String, dateAdded: {type: Date, default: Date.now} }],
   tastings: [{dateAdded: Date, location: String, rating: Number, thirdParty: Boolean, nose: String, palate: String, finish: String, comment: String}],
   wishLists: [String],
-  prices: [{dateAdded: Date, location: String, price: Number, tax: Number, shipping: Number, total: Number, comment: String}]
+  prices: [{dateAdded: Date, location: String, price: Number, tax: Number, shipping: Number, total: Number, comment: String, size: String}]
 });
 
 ScotchSchema.virtual('dramName').get(function() {
