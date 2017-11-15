@@ -39,11 +39,13 @@ module.exports = function() {
   app.use(passport.session());
   app.use(cors());
 
+
   require('../app/users/user.server.routes.js')(app);
   require('../app/scotches/scotch.server.routes.js')(app);
   require('../app/notes/note.server.routes.js')(app);
   require('../app/tastings/tasting.server.routes.js')(app);
   require('../app/wishlists/wishlist.server.routes.js')(app);
+  require('../app/prices/price.server.routes.js')(app);
   require('../app/lookup/style.server.routes.js')(app);
   require('../app/lookup/region.server.routes.js')(app);
 
