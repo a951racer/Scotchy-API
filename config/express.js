@@ -39,6 +39,7 @@ module.exports = function() {
   app.use(passport.session());
   app.use(cors());
 
+
   require('../app/users/user.server.routes.js')(app);
   require('../app/scotches/scotch.server.routes.js')(app);
   require('../app/notes/note.server.routes.js')(app);

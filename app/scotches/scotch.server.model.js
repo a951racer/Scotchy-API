@@ -1,5 +1,29 @@
 const mongoose = require('mongoose');
+const moment = require('moment');
 const Schema = mongoose.Schema;
+
+const tasting = new Schema({
+  dateAdded: Date,
+  location: String, 
+  rating: Number, 
+  thirdParty: Boolean,
+  nose: String, 
+  palate: String, 
+  finish: String, 
+  comment: String
+});
+
+tasting.virtual('personal').get(function() {
+  return !this.thirdParty;
+});
+
+tasting.virtual('dateAddedPretty').get(function() {
+  return moment(this.dateAdded).format('L');
+});
+
+tasting.set('toJSON', {
+  virtuals: true
+});
 
 const ScotchSchema = new Schema({
   distillerName: {
@@ -35,9 +59,16 @@ const ScotchSchema = new Schema({
   bottlingNotes: String,
   comment: String,
   notes: [{ note: String, dateAdded: {type: Date, default: Date.now} }],
-  tastings: [{dateAdded: Date, location: String, rating: Number, thirdParty: Boolean, nose: String, palate: String, finish: String, comment: String}],
+  tastings: {type: [tasting]},
   wishLists: [String],
-  prices: [{dateAdded: Date, location: String, price: Number, tax: Number, shipping: Number, total: Number, comment: String, size: String}]
+  prices: [{dateAdded: Date,
+            location: String,
+            price: Number,
+            tax: Number,
+            shipping: Number,
+            total: Number,
+            comment: String,
+            size: String}]
 });
 
 ScotchSchema.virtual('dramName').get(function() {
