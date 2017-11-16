@@ -34,7 +34,7 @@ exports.read = function(req, res) {
 
 exports.update = function(req, res) {
   const scotch = req.scotch;
-  
+
   scotch.distillerName = req.body.distillerName;
   scotch.flavor = req.body.flavor;
   scotch.age = req.body.age;
@@ -44,7 +44,7 @@ exports.update = function(req, res) {
   scotch.comment = req.body.comment;
   scotch.bottlingNotes = req.body.bottlingNotes;
   // scotch.added = req.body.added;
-  
+
   scotch.save((err) => {
     if (err) {
       return res.status(400).send({
