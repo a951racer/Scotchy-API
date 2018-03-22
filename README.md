@@ -4,15 +4,15 @@ This is a RESTful API supporting my "Scotchy" application.  Scotchy is a web app
 
 This API supports CRUD operations on the following data entities:
 
-*Scotch
-*Tasting Note
-*Price List
-*Wish List
-*General Notes
+* Scotch
+* Tasting Note
+* Price List
+* Wish List
+* General Notes
 
 As well as the following look-up data entities:
 
-*Style
-*Region
+* Style
+* Region
 
 
