@@ -6,10 +6,10 @@ This API uses MongoDB, Node.js and Express
 
 Additional details can be found in the [Scotchy-API Wiki](https://github.com/a951racer/Scotchy-API/wiki):
 
-* [Overview](https://github.com/a951racer/Scotchy-API/wiki/Overview)
-* [Technical Details](https://github.com/a951racer/Scotchy-API/wiki/Technical-Details)
-* [API Definition](https://github.com/a951racer/Scotchy-API/wiki/API-Definition)
-* [Sample App](https://github.com/a951racer/Scotchy-API/wiki/Sample-Application)
+* [Functional Overview](https://github.com/a951racer/Scotchy-API/wiki/1.--Functional-Overview)
+* [Technical Overview](https://github.com/a951racer/Scotchy-API/wiki/2.--Technical-Overview)
+* [API Definition](https://github.com/a951racer/Scotchy-API/wiki/3.--API-Definition)
+* [Sample Application](https://github.com/a951racer/Scotchy-API/wiki/4.-Sample-Application)
 
 
 
