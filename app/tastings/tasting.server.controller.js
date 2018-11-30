@@ -88,6 +88,7 @@ exports.list = function(req, res) {
           newTasting.comment = tasting.comment;
           newTasting.scotchId = scotch._id;
           newTasting.dramName = scotch.dramName;
+          newTasting._id = tasting._id;
           response.push(newTasting);
           newTasting = {};
         });

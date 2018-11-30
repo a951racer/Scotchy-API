@@ -47,7 +47,18 @@ exports.read = function(req, res) {
 };
 
 exports.readByName = function(req, res) {
-  res.status(200).json(req.wishlist);
+  let wishlist = new Object();
+  wishlist.wishlist = req.wishlist;
+  Scotch.find({wishLists: req.wishlist.wishListName}).sort({'distillerName': 1, 'flavor': 1, 'age': 1}).populate('creator', 'firstName lastName fullName').exec((err, scotches) => {
+    if (err) {
+      return res.status(400).send({
+        message: getErrorMessage(err)
+      });
+    } else {
+      wishlist.scotches = scotches;
+      res.status(200).json(wishlist);
+    }
+  });
 };
 
 exports.update = function(req, res) {
@@ -142,10 +153,10 @@ exports.wishlistByID = function(req, res, next, id) {
 };
 
 exports.wishlistByName = function(req, res, next, name) {
+  console.log('utility');
   Wishlist.findOne({wishListName: name}).populate('creator', 'firstName lastName fullName').exec((err, wishlist) => {
     if (err) return next(err);
     if (!wishlist) return next(new Error('Failed to load wishlist ' + name));
-
     req.wishlist = wishlist;
     next();
   });
