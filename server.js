@@ -7,8 +7,9 @@ const configurePassport = require('./config/passport');
 const db = configureMongoose();
 const app = configureExpress();
 const passport = configurePassport();
+const PORT = process.env.PORT || 4800
 
-app.listen(4700);
+app.listen(PORT);
 module.exports = app;
 
-console.log('Server running at http://localhost:4700/');
+console.log(`heroku: Server running at http://localhost:${PORT}/`);
