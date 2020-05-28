@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const ScotchSchema = require('../scotches/scotch.server.model')
 const Schema = mongoose.Schema;
 
 const WishlistSchema = new Schema({
@@ -17,6 +18,7 @@ const WishlistSchema = new Schema({
         ref: 'User'
     },
     description: String,
+    scotches: []
 });
 
 WishlistSchema.set('toJSON', {
